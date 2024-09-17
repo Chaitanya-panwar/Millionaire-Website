@@ -3,6 +3,10 @@ import { useAuthStore } from "../store/authStore";
 import { formatDate } from "../utils/date";
 import { Sidebar } from "../components/Sidebar";
 import { IndianRupee } from "lucide-react";
+import { Bar } from 'react-chartjs-2';
+import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js';
+
+ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale);
 
 const DashboardPage = () => {
 	const { user, logout } = useAuthStore();
@@ -10,6 +14,38 @@ const DashboardPage = () => {
 	const handleLogout = () => {
 		logout();
 	};
+	const data = {
+		labels: [
+		  'January', 'February', 'March', 'April', 'May', 'June',
+		  'July', 'August', 'September', 'October', 'November', 'December'
+		],
+		datasets: [
+		  {
+			label: 'Sales',
+			data: [10, 20, 15, 25, 30, 20, 35, 40, 50, 60, 70, 80], // Example data
+			backgroundColor: 'rgba(75, 192, 192, 0.2)',
+			borderColor: 'rgba(75, 192, 192, 1)',
+			borderWidth: 1,
+		  },
+		],
+	  };
+	
+	  // Options for the chart
+	  const options = {
+		responsive: true,
+		plugins: {
+		  legend: {
+			position: 'top',
+		  },
+		  tooltip: {
+			callbacks: {
+			  label: function (context) {
+				return `${context.dataset.label}: ${context.raw}`;
+			  },
+			},
+		  },
+		},
+	  };
 	return (
 		<>
 			<Sidebar />
@@ -66,6 +102,11 @@ const DashboardPage = () => {
 
 
 			</div>
+			<div className="p-6 max-w-2xl mx-auto bg-white shadow-md rounded-lg my-5">
+      <h2 className="text-lg font-semibold mb-4">Monthly Sales Data</h2>
+      <Bar data={data} options={options} />
+    </div>
+	
 
 		</>
 	);

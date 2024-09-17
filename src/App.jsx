@@ -16,6 +16,7 @@ import { useEffect } from "react";
 import Profile from "./pages/Profile";
 import Wallet from "./pages/Wallet";
 import TermsAndCondition from "./pages/TermsAndCondition";
+import Account from "./pages/Account";
 
 // protect routes that require authentication
 const ProtectedRoute = ({ children }) => {
@@ -87,6 +88,14 @@ function App() {
 					element={
 						<ProtectedRoute>
 							<TermsAndCondition />
+						</ProtectedRoute>
+					}
+				/>
+				<Route
+					path='/account'
+					element={
+						<ProtectedRoute>
+							<Account />
 						</ProtectedRoute>
 					}
 				/>

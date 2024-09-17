@@ -94,7 +94,7 @@ export const Sidebar = () => {
 const items = [
   { title: 'Dashboard', Icon: House , to: '/' },
   { title: 'Profile', Icon: User, to:'/profile' },
-  { title: 'Account', Icon: Landmark, to: '#' },
+  { title: 'Account', Icon: Landmark, to: '/account' },
   { title: 'Investment', Icon:ReceiptIndianRupee , to: '#' },
   { title: 'Statement', Icon: NotebookText, to: '#' },
   { title: 'Wallet', Icon: WalletMinimal, to: '/wallet' },
